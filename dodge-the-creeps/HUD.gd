@@ -30,6 +30,7 @@ func _ready():
 func _on_MessageTimer_timeout():
 	$MessageLabel.hide()
 
+# https://docs.godotengine.org/en/3.0/tutorials/networking/http_request_class.html?highlight=http
 func _on_StartButton_pressed():
 	$HTTPRequest.request("http://httpbin.org/ip")
 	$StartButton.hide()
