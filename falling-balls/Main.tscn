@@ -155,7 +155,7 @@ _sections_unfolded = [ "Transform" ]
 
 editor/display_folded = true
 position = Vector2( 30.2087, 337.685 )
-rotation = 1.5708
+rotation = 0.698132
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -241,11 +241,13 @@ bus = "Master"
 
 [node name="Drop" type="AudioStreamPlayer" parent="." index="3"]
 
+pause_mode = 2
 stream = ExtResource( 6 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "Master"
+_sections_unfolded = [ "Pause" ]
 
 
