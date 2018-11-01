@@ -13,7 +13,8 @@ func _ready():
 	pass
 
 func _process(delta):
-	$Score.text = str(score)
+	#$Score.text = str(score)
+	$Score.text = str(get_tree().get_nodes_in_group("balls").size())
 #	# Called every frame. Delta is time since last frame.
 #	# Update game logic here.
 #	pass

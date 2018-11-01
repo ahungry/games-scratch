@@ -15,6 +15,7 @@ func _integrate_forces(state):
 	state.set_linear_velocity(velocity + direction * dt)
 
 func _ready():
+	add_to_group("balls")
 	screensize = get_viewport_rect().size
 	set_use_custom_integrator(true)
 
@@ -25,8 +26,14 @@ func _process(delta):
 	if _gdir_y == 0:
 		_gdir_y = -1
 
-	position.x = clamp(position.x, 0, screensize.x)
-	position.y = clamp(position.y, 0, screensize.y)
+	if position.x > screensize.x or position.x < 0:
+		queue_free()
+
+	if position.y > screensize.y or position.y < 0:
+		queue_free()
+
+	#position.x = clamp(position.x, 0, screensize.x)
+	#position.y = clamp(position.y, 0, screensize.y)
 	#if Input.get_accelerometer().x < 0:
 
 	#if Input.get_accelerometer().x < 0:
