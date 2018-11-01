@@ -6,6 +6,9 @@ extends RigidBody2D
 var _gdir_x = 0
 var _gdir_y = 0
 var screensize
+var words = ["A", "B", "C", "D", "E", "F", "G", "H", "I",
+"J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U",
+"V", "W", "X", "Y", "Z"]
 
 func _integrate_forces(state):
 	var dt = state.get_step()
@@ -18,6 +21,7 @@ func _ready():
 	add_to_group("balls")
 	screensize = get_viewport_rect().size
 	set_use_custom_integrator(true)
+	$Letter.text = words[randi() % words.size()]
 
 func _process(delta):
 	_gdir_x = Input.get_accelerometer().x

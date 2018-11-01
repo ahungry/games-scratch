@@ -8,6 +8,7 @@ var rot_inc = 0.001
 var score = 0
 
 func _ready():
+	randomize()
 	$Music.play()
 
 func _input(event):
