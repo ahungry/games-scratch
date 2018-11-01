@@ -20,8 +20,8 @@ func set_avoids():
 		avoid.push_front(letter)
 
 func _ready():
-	set_avoids()
 	randomize()
+	set_avoids()
 	$Music.play()
 	$HUD/Avoid.text = str(avoid)
 

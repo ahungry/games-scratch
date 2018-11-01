@@ -14,7 +14,7 @@ func _integrate_forces(state):
 	var dt = state.get_step()
 	var gravity = state.get_total_gravity() # The default gravity
 	var velocity = state.get_linear_velocity()
-	var direction = Vector2(_gdir_x, -1 * _gdir_y) * gravity.length()
+	var direction = Vector2(_gdir_x, -1 * _gdir_y) * gravity.length() / 8
 	state.set_linear_velocity(velocity + direction * dt)
 
 func _ready():
