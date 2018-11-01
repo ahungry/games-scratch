@@ -7,10 +7,7 @@ path="res://.import/Bouncy Platform Medium.png-7896338a5f44da1e83084c154a3c4a9e.
 [deps]
 
 source_file="res://assets/Bouncy Platform Medium.png"
-source_md5="349570580b9e479a63bd4f31345dc464"
-
 dest_files=[ "res://.import/Bouncy Platform Medium.png-7896338a5f44da1e83084c154a3c4a9e.stex" ]
-dest_md5="2c94a72b94160d5b303c4489b4ea29fb"
 
 [params]
 

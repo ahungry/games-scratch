@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Ball.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/Bouncy Platform Long.png" type="Texture" id=3]
+[ext_resource path="res://HUD.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -10,7 +11,7 @@ custom_solver_bias = 0.0
 radius = 28.7617
 height = 253.621
 
-[node name="Main" type="Node" index="0"]
+[node name="Main" type="Node"]
 
 script = ExtResource( 1 )
 Ball = ExtResource( 2 )
@@ -226,5 +227,7 @@ texture = ExtResource( 3 )
 rotation = 1.5708
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
+
+[node name="HUD" parent="." index="1" instance=ExtResource( 4 )]
 
 
