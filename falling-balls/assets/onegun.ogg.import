@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/onegun.ogg-55541b203e97373eabbfb1fd12d27131.oggstr"
+
+[deps]
+
+source_file="res://assets/onegun.ogg"
+dest_files=[ "res://.import/onegun.ogg-55541b203e97373eabbfb1fd12d27131.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

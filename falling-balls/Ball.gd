@@ -10,7 +10,7 @@ func _integrate_forces(state):
 	var dt = state.get_step()
 	var gravity = state.get_total_gravity() # The default gravity
 	var velocity = state.get_linear_velocity()
-	var direction = Vector2(_gdir_x, _gdir_y) * gravity.length()
+	var direction = Vector2(_gdir_x, -1 * _gdir_y) * gravity.length()
 	state.set_linear_velocity(velocity + direction * dt)
 
 func _ready():
@@ -21,7 +21,7 @@ func _process(delta):
 	_gdir_y = Input.get_accelerometer().y
 
 	if _gdir_y == 0:
-		_gdir_y = 1
+		_gdir_y = -1
 	#if Input.get_accelerometer().x < 0:
 
 	#if Input.get_accelerometer().x < 0:
