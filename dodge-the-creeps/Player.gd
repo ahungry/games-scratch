@@ -15,7 +15,6 @@ func _ready():
 	# Initialization here
 	screensize = get_viewport_rect().size
 	hide()
-	pass
 
 func _process(delta):
 #	# Called every frame. Delta is time since last frame.
