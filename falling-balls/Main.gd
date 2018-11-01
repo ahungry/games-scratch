@@ -6,10 +6,16 @@ var balls = 0
 var rot = 0
 var rot_inc = 0.001
 var score = 0
+var words = ["A", "B", "C", "D", "E", "F", "G", "H", "I",
+"J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U",
+"V", "W", "X", "Y", "Z"]
+# TODO Set this randomly
+var avoid = ["A", "B", "C", "D", "E"]
 
 func _ready():
 	randomize()
 	$Music.play()
+	$HUD/Avoid.text = str(avoid)
 
 func _input(event):
 	if event.is_action_pressed("click"):
@@ -41,9 +47,23 @@ func _process(delta):
 
 
 func _on_Timer_timeout():
-	var balls = get_tree().get_nodes_in_group("balls").size()
-	var bad_balls = get_tree().get_nodes_in_group("bad_balls").size()
-	score += balls
+	var good = 0
+	var bad = 0
+	var balls = get_tree().get_nodes_in_group("balls") #.size()
+	for ball in balls:
+		var matched = false
+		var letter = ball.get_node("Letter")
+
+		for a in avoid:
+			if a == letter.text:
+				matched = true
+
+		if matched == false:
+			good += 1
+		else:
+			bad += 1
+
+	score += good - bad
 	$HUD/Score.text = str(score)
-	$HUD/Good.text = str(balls)
-	$HUD/Bad.text = str(bad_balls)
+	$HUD/Good.text = str(good)
+	$HUD/Bad.text = str(bad)
