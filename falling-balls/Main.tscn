@@ -286,7 +286,7 @@ _sections_unfolded = [ "Pause" ]
 [node name="Timer" type="Timer" parent="." index="6"]
 
 process_mode = 1
-wait_time = 0.5
+wait_time = 5.0
 one_shot = false
 autostart = true
 
