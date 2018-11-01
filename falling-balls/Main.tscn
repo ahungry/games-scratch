@@ -13,7 +13,7 @@ custom_solver_bias = 0.0
 radius = 28.7617
 height = 253.621
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node" index="0"]
 
 script = ExtResource( 1 )
 Ball = ExtResource( 2 )

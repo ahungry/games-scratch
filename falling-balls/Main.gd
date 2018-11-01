@@ -11,8 +11,16 @@ var words = ["A", "B", "C", "D", "E", "F", "G", "H", "I",
 "V", "W", "X", "Y", "Z"]
 # TODO Set this randomly
 var avoid = ["A", "B", "C", "D", "E"]
+var level = 4
+
+func set_avoids():
+	avoid = []
+	for i in range(0, level):
+		var letter = words[randi() % words.size()]
+		avoid.push_front(letter)
 
 func _ready():
+	set_avoids()
 	randomize()
 	$Music.play()
 	$HUD/Avoid.text = str(avoid)
