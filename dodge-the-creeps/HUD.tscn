@@ -55,7 +55,14 @@ scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 script = ExtResource( 1 )
 
-[node name="ScoreLabel" type="Label" parent="." index="0"]
+[node name="HTTPRequest" type="HTTPRequest" parent="." index="0"]
+
+download_file = ""
+use_threads = false
+body_size_limit = -1
+max_redirects = 8
+
+[node name="ScoreLabel" type="Label" parent="." index="1"]
 
 anchor_left = 0.5
 anchor_top = 0.0
@@ -78,7 +85,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Margin", "custom_fonts" ]
 
-[node name="MessageLabel" type="Label" parent="." index="1"]
+[node name="MessageLabel" type="Label" parent="." index="2"]
 
 anchor_left = 0.5
 anchor_top = 0.5
@@ -103,7 +110,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Margin", "custom_fonts" ]
 
-[node name="StartButton" type="Button" parent="." index="2"]
+[node name="StartButton" type="Button" parent="." index="3"]
 
 anchor_left = 0.5
 anchor_top = 1.0
@@ -130,14 +137,14 @@ flat = false
 align = 1
 _sections_unfolded = [ "custom_fonts" ]
 
-[node name="MessageTimer" type="Timer" parent="." index="3"]
+[node name="MessageTimer" type="Timer" parent="." index="4"]
 
 process_mode = 1
 wait_time = 1.0
 one_shot = false
 autostart = false
 
-[node name="left" type="TouchScreenButton" parent="." index="4"]
+[node name="left" type="TouchScreenButton" parent="." index="5"]
 
 material = SubResource( 4 )
 position = Vector2( 4.29318, 358.663 )
@@ -153,7 +160,7 @@ action = "ui_left"
 visibility_mode = 0
 _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
-[node name="right" type="TouchScreenButton" parent="." index="5"]
+[node name="right" type="TouchScreenButton" parent="." index="6"]
 
 material = SubResource( 4 )
 position = Vector2( 464.208, 353.101 )
@@ -169,7 +176,7 @@ action = "ui_right"
 visibility_mode = 0
 _sections_unfolded = [ "Material", "Visibility" ]
 
-[node name="up" type="TouchScreenButton" parent="." index="6"]
+[node name="up" type="TouchScreenButton" parent="." index="7"]
 
 material = SubResource( 4 )
 position = Vector2( 228.755, 22.6505 )
@@ -185,7 +192,7 @@ action = "ui_up"
 visibility_mode = 0
 _sections_unfolded = [ "Material", "Visibility" ]
 
-[node name="down" type="TouchScreenButton" parent="." index="7"]
+[node name="down" type="TouchScreenButton" parent="." index="8"]
 
 material = SubResource( 4 )
 position = Vector2( 235.557, 687.873 )
@@ -200,6 +207,8 @@ passby_press = false
 action = "ui_down"
 visibility_mode = 0
 _sections_unfolded = [ "Material", "Visibility" ]
+
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
 
 [connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
 

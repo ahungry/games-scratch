@@ -31,5 +31,11 @@ func _on_MessageTimer_timeout():
 	$MessageLabel.hide()
 
 func _on_StartButton_pressed():
+	$HTTPRequest.request("http://httpbin.org/ip")
 	$StartButton.hide()
 	emit_signal("start_game")
+
+func _on_HTTPRequest_request_completed(result, response_code, headers, body):
+	var json = JSON.parse(body.get_string_from_utf8())
+	printt(json.result)
+	show_message("Your IP was: " + json.result.origin)
