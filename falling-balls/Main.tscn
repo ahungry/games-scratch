@@ -18,7 +18,23 @@ height = 253.621
 script = ExtResource( 1 )
 Ball = ExtResource( 2 )
 
-[node name="BG" type="ColorRect" parent="." index="0"]
+[node name="ColorRect" type="ColorRect" parent="." index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 1040.0
+margin_bottom = 625.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0, 0, 0, 1 )
+
+[node name="BG" type="ColorRect" parent="." index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -32,9 +48,9 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-color = Color( 0.212448, 0.405439, 0.457031, 1 )
+color = Color( 0.212448, 0.405439, 0.457031, 0.187843 )
 
-[node name="WallContainer" type="Node" parent="." index="1"]
+[node name="WallContainer" type="Node" parent="." index="2"]
 
 [node name="Wall2" type="StaticBody2D" parent="WallContainer" index="0"]
 
@@ -245,9 +261,9 @@ rotation = 1.5708
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="HUD" parent="." index="2" instance=ExtResource( 4 )]
+[node name="HUD" parent="." index="3" instance=ExtResource( 4 )]
 
-[node name="Music" type="AudioStreamPlayer" parent="." index="3"]
+[node name="Music" type="AudioStreamPlayer" parent="." index="4"]
 
 stream = ExtResource( 5 )
 volume_db = 0.0
@@ -256,7 +272,7 @@ autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="Drop" type="AudioStreamPlayer" parent="." index="4"]
+[node name="Drop" type="AudioStreamPlayer" parent="." index="5"]
 
 pause_mode = 2
 stream = ExtResource( 6 )

@@ -4,6 +4,7 @@ export (PackedScene) var Ball
 
 var balls = 0
 var rot = 0
+var rot_inc = 0.001
 
 func _ready():
 	$Music.play()
@@ -18,12 +19,20 @@ func _input(event):
 		$HUD.score = balls
 
 func _process(delta):
-	rot += 0.01
-	$WallContainer/Wall8.rotation = rot / 8
-	$WallContainer/Wall7.rotation = rot / 7
+	if rot > 1:
+		rot_inc = -0.001
+
+	if rot < 0:
+		rot_inc = 0.001
+
+	rot += rot_inc
+
+	$WallContainer/Wall8.rotation = rot * 8
+	$WallContainer/Wall7.rotation = rot * 7
 	$WallContainer/Wall6.rotation = rot / 6
 	$WallContainer/Wall5.rotation = rot / 5
 	$WallContainer/Wall4.rotation = rot / 4
 	$WallContainer/Wall3.rotation = rot / 3
 	$WallContainer/Wall2.rotation = rot / 2
 	$WallContainer/Wall1.rotation = rot / 1
+	$BG.color = Color (rot, rot * 2, rot * 3, 0.4)
