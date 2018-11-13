@@ -18,14 +18,14 @@ var map = null
 var map_pos = Vector2()
 var speed = 1
 var moving = false
-	
+
 func can_move(dir):
 	var t = map.get_cellv(map_pos)
 	if t & dir:
 		return false
 	else:
 		return true
-	
+
 func _input(event):
 	if moving:
 		return
@@ -37,7 +37,7 @@ func _input(event):
 		move(E)
 	if event.is_action_pressed('ui_left'):
 		move(W)
-	
+
 func move(dir):
 	if not can_move(dir):
 		return
@@ -50,6 +50,13 @@ func move(dir):
 	$Tween.interpolate_property(self, 'position', position, destination, speed,
 								Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
 	$Tween.start()
+	printt('Debug info for truck')
+	printt(get_position().x)
+	printt(get_position().y)
+	printt(destination)
+	printt(map_pos)
+	printt(map_pos.x)
+	printt(map_pos.y)
 
 func _on_Tween_tween_completed(object, key):
 	moving = false

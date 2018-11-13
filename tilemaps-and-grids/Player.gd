@@ -9,7 +9,7 @@ func _input(event):
 		$Camera2D.zoom = $Camera2D.zoom - Vector2(0.1, 0.1)
 	if event.is_action_pressed('scroll_down'):
 		$Camera2D.zoom = $Camera2D.zoom + Vector2(0.1, 0.1)
-		
+
 func get_input():
 	velocity = Vector2()
 	if Input.is_action_pressed('ui_right'):
@@ -23,5 +23,8 @@ func get_input():
 	velocity = velocity.normalized() * speed
 
 func _physics_process(delta):
+	printt(get_position().x)
+	printt(get_position().y)
+
 	get_input()
 	velocity = move_and_slide(velocity)

@@ -1,0 +1,14 @@
+[remap]
+
+importer="Webm"
+type="VideoStreamWebm"
+path="res://.import/Procedural Content Generation in Godot Part 3 - Tile-based Infinite Worlds-lc34v8pjTXk.webm-d8706539c8c4aefc67073633ffb549d4.webmstr"
+
+[deps]
+
+source_file="res://Procedural Content Generation in Godot Part 3 - Tile-based Infinite Worlds-lc34v8pjTXk.webm"
+dest_files=[ "res://.import/Procedural Content Generation in Godot Part 3 - Tile-based Infinite Worlds-lc34v8pjTXk.webm-d8706539c8c4aefc67073633ffb549d4.webmstr" ]
+
+[params]
+
+loop=true
