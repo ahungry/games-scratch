@@ -42,15 +42,17 @@ func _ready():
 	#var http = HTTPRequest.instance()
 	var http = HTTPRequest.new()
 	add_child(http)
-	connect("request_completed", http, "_on_HTTPRequest_request_completed", [])
+	http.connect("request_completed", self, "_ack", [])
+	#http.request('http://httpbin.org/ip')
 	http.request('http://127.0.0.1:12345/')
-	printt("I am sending the request by now...")
 
-func _on_HTTPRequest_request_completed(result, response_code, headers, body):
+func _ack(result, response_code, headers, body):
 	printt("Got something back...")
+	printt(result)
+	printt(body.get_string_from_utf8())
 	var json = JSON.parse(body.get_string_from_utf8())
+	printt(json)
 	printt(json.result)
-	show_message("Your coords were: " + json.result.x + " and " + json.result.y)
 
 func move(dir):
 	if not can_move(dir):
