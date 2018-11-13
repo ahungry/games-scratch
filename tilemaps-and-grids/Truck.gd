@@ -38,6 +38,20 @@ func _input(event):
 	if event.is_action_pressed('ui_left'):
 		move(W)
 
+func _ready():
+	#var http = HTTPRequest.instance()
+	var http = HTTPRequest.new()
+	add_child(http)
+	connect("request_completed", http, "_on_HTTPRequest_request_completed", [])
+	http.request('http://127.0.0.1:12345/')
+	printt("I am sending the request by now...")
+
+func _on_HTTPRequest_request_completed(result, response_code, headers, body):
+	printt("Got something back...")
+	var json = JSON.parse(body.get_string_from_utf8())
+	printt(json.result)
+	show_message("Your coords were: " + json.result.x + " and " + json.result.y)
+
 func move(dir):
 	if not can_move(dir):
 		return
