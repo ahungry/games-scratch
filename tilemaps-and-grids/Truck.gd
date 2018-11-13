@@ -19,6 +19,9 @@ var map_pos = Vector2()
 var speed = 1
 var moving = false
 
+var dest_x = 0
+var dest_y = 0
+
 func can_move(dir):
 	var t = map.get_cellv(map_pos)
 	if t & dir:
@@ -53,6 +56,18 @@ func _ack(result, response_code, headers, body):
 	var json = JSON.parse(body.get_string_from_utf8())
 	printt(json)
 	printt(json.result)
+	printt(json.result.x)
+	printt(json.result.y)
+	dest_x = json.result.x
+	dest_y = json.result.y
+	map_pos = Vector2(dest_x, dest_y)
+	var destination = map.map_to_world(map_pos) + Vector2(0, 20)
+	$Tween.interpolate_property(self, 'position', position, destination, speed,
+								Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+	$Tween.start()
+
+func _process(delta):
+	pass
 
 func move(dir):
 	if not can_move(dir):
