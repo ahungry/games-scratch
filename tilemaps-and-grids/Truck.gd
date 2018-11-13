@@ -44,6 +44,8 @@ func move(dir):
 	moving = true
 	$AnimatedSprite.play(animations[dir])
 	map_pos += moves[dir]
+	# Go to an absolute position
+	# map_pos = Vector2(5, 5)
 	if map.get_cellv(map_pos) == -1:
 		get_parent().generate_tile(map_pos)
 	var destination = map.map_to_world(map_pos) + Vector2(0, 20)
