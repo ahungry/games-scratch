@@ -36,16 +36,20 @@ func _input(event):
 		return
 	if event.is_action_pressed('ui_up'):
 		move(N)
-		flip_h = false
+		flip_h = true
+		modulate = Color(0.1, 0.1, 0.1)
 	if event.is_action_pressed('ui_down'):
 		move(S)
 		flip_h = false
+		modulate = Color(1, 1, 1)
 	if event.is_action_pressed('ui_right'):
 		move(E)
 		flip_h = true
+		modulate = Color(1, 1, 1)
 	if event.is_action_pressed('ui_left'):
 		move(W)
 		flip_h = false
+		modulate = Color(0.1, 0.1, 0.1)
 
 func _ready():
 	#var http = HTTPRequest.instance()
