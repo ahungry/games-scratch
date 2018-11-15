@@ -1,36 +1,41 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Truck.gd" type="Script" id=1]
-[ext_resource path="res://assets/IsoTruck/carRed6_007.png" type="Texture" id=2]
-[ext_resource path="res://assets/IsoTruck/carRed6_002.png" type="Texture" id=3]
-[ext_resource path="res://assets/IsoTruck/carRed6_000.png" type="Texture" id=4]
-[ext_resource path="res://assets/IsoTruck/carRed6_006.png" type="Texture" id=5]
+[ext_resource path="res://assets/IsoTruck/carRed6_002.png" type="Texture" id=2]
+[ext_resource path="res://assets/IsoTruck/carRed6_000.png" type="Texture" id=3]
+[ext_resource path="res://assets/IsoTruck/carRed6_006.png" type="Texture" id=4]
+[ext_resource path="res://assets/IsoTruck/carRed6_007.png" type="Texture" id=5]
 [ext_resource path="res://assets/IsoTruck/carRed6_005.png" type="Texture" id=6]
 [ext_resource path="res://assets/IsoTruck/carRed6_001.png" type="Texture" id=7]
 [ext_resource path="res://assets/IsoTruck/carRed6_008.png" type="Texture" id=8]
 [ext_resource path="res://assets/IsoTruck/carRed6_011.png" type="Texture" id=9]
+[ext_resource path="res://assets/IsoUnits/peasant-20.png" type="Texture" id=10]
+[ext_resource path="res://assets/IsoUnits/peasant-21.png" type="Texture" id=11]
+[ext_resource path="res://assets/IsoUnits/peasant-22.png" type="Texture" id=12]
+[ext_resource path="res://assets/IsoUnits/peasant-23.png" type="Texture" id=13]
+[ext_resource path="res://assets/IsoUnits/peasant-24.png" type="Texture" id=14]
 
 [sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
 "frames": [ ExtResource( 2 ) ],
 "loop": false,
-"name": "e",
+"name": "n",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 3 ) ],
 "loop": false,
-"name": "n",
+"name": "w",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 4 ) ],
 "loop": false,
-"name": "w",
+"name": "s",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 5 ) ],
 "loop": false,
-"name": "s",
+"name": "e",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 6 ) ],
@@ -54,12 +59,21 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="SpriteFrames" id=2]
+
+animations = [ {
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=3]
 
 custom_solver_bias = 0.0
 radius = 10.0
 
-[node name="Truck" type="Area2D"]
+[node name="Truck" type="Area2D" index="0"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -77,12 +91,17 @@ frames = SubResource( 1 )
 animation = "e"
 _sections_unfolded = [ "Transform" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+[node name="AnimatedSprite2" type="AnimatedSprite" parent="." index="1"]
+
+frames = SubResource( 2 )
+animation = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
 
 visible = false
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
-[node name="Tween" type="Tween" parent="." index="2"]
+[node name="Tween" type="Tween" parent="." index="3"]
 
 repeat = false
 playback_process_mode = 1
@@ -91,7 +110,7 @@ playback/active = false
 playback/repeat = false
 playback/speed = 1.0
 
-[node name="Camera2D" type="Camera2D" parent="." index="3"]
+[node name="Camera2D" type="Camera2D" parent="." index="4"]
 
 anchor_mode = 1
 rotating = false

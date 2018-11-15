@@ -48,6 +48,8 @@ func _ready():
 	http.connect("request_completed", self, "_ack", [])
 	#http.request('http://httpbin.org/ip')
 	http.request('http://127.0.0.1:12345/')
+	$Tween.connect('tween_started', self, '_tweening_on', [])
+	$Tween.connect('tween_completed', self, '_tweening_off', [])
 
 func _ack(result, response_code, headers, body):
 	printt("Got something back...")
@@ -67,7 +69,12 @@ func _ack(result, response_code, headers, body):
 	$Tween.start()
 
 func _process(delta):
-	pass
+	if moving:
+		$AnimatedSprite2.set_flip_h(true)
+		$AnimatedSprite2.play()
+	else:
+		$AnimatedSprite2.set_flip_h(false)
+		$AnimatedSprite2.stop()
 
 func move(dir):
 	if not can_move(dir):

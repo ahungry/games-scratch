@@ -4,7 +4,7 @@
 [ext_resource path="res://iso_roads.tres" type="TileSet" id=2]
 [ext_resource path="res://Truck.tscn" type="PackedScene" id=3]
 
-[node name="Roads" type="Node2D" index="0"]
+[node name="Roads" type="Node2D"]
 
 script = ExtResource( 1 )
 
