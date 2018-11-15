@@ -22,6 +22,8 @@ var moving = false
 var dest_x = 0
 var dest_y = 0
 
+var flip_h = false
+
 func can_move(dir):
 	var t = map.get_cellv(map_pos)
 	if t & dir:
@@ -34,12 +36,16 @@ func _input(event):
 		return
 	if event.is_action_pressed('ui_up'):
 		move(N)
+		flip_h = false
 	if event.is_action_pressed('ui_down'):
 		move(S)
+		flip_h = false
 	if event.is_action_pressed('ui_right'):
 		move(E)
+		flip_h = true
 	if event.is_action_pressed('ui_left'):
 		move(W)
+		flip_h = false
 
 func _ready():
 	#var http = HTTPRequest.instance()
@@ -70,10 +76,10 @@ func _ack(result, response_code, headers, body):
 
 func _process(delta):
 	if moving:
-		$AnimatedSprite2.set_flip_h(true)
+		$AnimatedSprite2.set_flip_h(flip_h)
 		$AnimatedSprite2.play()
 	else:
-		$AnimatedSprite2.set_flip_h(false)
+		$AnimatedSprite2.set_flip_h(flip_h)
 		$AnimatedSprite2.stop()
 
 func move(dir):
