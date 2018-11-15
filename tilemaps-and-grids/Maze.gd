@@ -17,7 +17,7 @@ func _ready():
 	# Just make a bunch of cells out of the gate.
 	for x in range(10):
 		for y in range(10):
-			Map.set_cell(x, y, 1)
+			Map.set_cell(x, y, 0)
 
 func generate_tile(cell):
 	var cells = find_valid_tiles(cell)
