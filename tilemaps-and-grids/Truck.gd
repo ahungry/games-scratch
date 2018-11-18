@@ -60,7 +60,6 @@ func _ready():
 	http.request('http://127.0.0.1:12345/')
 	$Tween.connect('tween_started', self, '_tweening_on', [])
 	$Tween.connect('tween_completed', self, '_tweening_off', [])
-	$AnimatedSprite2.play('knight')
 
 func _ack(result, response_code, headers, body):
 	printt("Got something back...")
@@ -85,7 +84,7 @@ func _process(delta):
 		$AnimatedSprite2.play('knight')
 	else:
 		$AnimatedSprite2.set_flip_h(flip_h)
-		# $AnimatedSprite2.stop()
+		$AnimatedSprite2.stop()
 
 func move(dir):
 	if not can_move(dir):

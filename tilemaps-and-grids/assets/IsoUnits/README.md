@@ -2,6 +2,10 @@
 
 convert peasant_sheet.png -crop 50x50 peasant.png
 
+# Resize many
+
+ls knight-*.png | xargs -I{} convert {} -filter point -resize 200%  {}
+
 # Recombine
 
 files=$(ls tiles*.png | sort -t '-' -n -k 2 | tr '\n' ' ')

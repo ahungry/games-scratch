@@ -75,7 +75,7 @@ animations = [ {
 "frames": [ ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 16 ), ExtResource( 15 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 18 ) ],
 "loop": true,
 "name": "knight",
-"speed": 5.0
+"speed": 20.0
 } ]
 
 [sub_resource type="CircleShape2D" id=3]
@@ -106,6 +106,7 @@ _sections_unfolded = [ "Transform" ]
 
 frames = SubResource( 2 )
 animation = "knight"
+offset = Vector2( 0, -25 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
