@@ -66,7 +66,9 @@ func _ack(result, response_code, headers, body):
 	printt(result)
 	printt(body.get_string_from_utf8())
 	var json = JSON.parse(body.get_string_from_utf8())
+	if not json: return
 	printt(json)
+	if not json.result: return
 	printt(json.result)
 	printt(json.result.x)
 	printt(json.result.y)
