@@ -70,10 +70,10 @@ func _ack(result, response_code, headers, body):
 	printt(json)
 	if not json.result: return
 	printt(json.result)
-	printt(json.result.x)
-	printt(json.result.y)
-	dest_x = json.result.x
-	dest_y = json.result.y
+	printt(json.result[0].x)
+	printt(json.result[0].y)
+	dest_x = json.result[0].x
+	dest_y = json.result[0].y
 	map_pos = Vector2(dest_x, dest_y)
 	var destination = map.map_to_world(map_pos) + Vector2(0, 20)
 	$Tween.interpolate_property(self, 'position', position, destination, speed,
