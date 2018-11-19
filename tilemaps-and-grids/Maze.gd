@@ -18,6 +18,25 @@ func _ready():
 	for x in range(10):
 		for y in range(10):
 			Map.set_cell(x, y, 0)
+	# Pull in some remote stuff (TODO: Add timer for this)
+	var http = HTTPRequest.new()
+	add_child(http)
+	http.connect("request_completed", self, "_ack", [])
+	#http.request('http://httpbin.org/ip')
+	http.request('http://127.0.0.1:12345/')
+
+
+func _ack(result, response_code, headers, body):
+	printt("Got something back...")
+	printt(result)
+	printt(body.get_string_from_utf8())
+	var json = JSON.parse(body.get_string_from_utf8())
+	if not json: return
+	printt(json)
+	if not json.result: return
+	printt(json.result)
+	for i in range(0, json.result.size()):
+		printt('Found name: ' + json.result[i].name)
 
 func generate_tile(cell):
 	var cells = find_valid_tiles(cell)
