@@ -57,9 +57,18 @@ func _ready():
 	add_child(http)
 	http.connect("request_completed", self, "_ack", [])
 	#http.request('http://httpbin.org/ip')
-	http.request('http://127.0.0.1:12345/')
+	#http.request('http://127.0.0.1:12345/')
 	$Tween.connect('tween_started', self, '_tweening_on', [])
 	$Tween.connect('tween_completed', self, '_tweening_off', [])
+
+func tween_to (x, y, map):
+	dest_x = x
+	dest_y = y
+	map_pos = Vector2(dest_x, dest_y)
+	var destination = map.map_to_world(map_pos) + Vector2(0, 20)
+	$Tween.interpolate_property(self, 'position', position, destination, speed,
+								Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+	$Tween.start()
 
 func _ack(result, response_code, headers, body):
 	printt("Got something back...")
@@ -72,13 +81,7 @@ func _ack(result, response_code, headers, body):
 	printt(json.result)
 	printt(json.result[0].x)
 	printt(json.result[0].y)
-	dest_x = json.result[0].x
-	dest_y = json.result[0].y
-	map_pos = Vector2(dest_x, dest_y)
-	var destination = map.map_to_world(map_pos) + Vector2(0, 20)
-	$Tween.interpolate_property(self, 'position', position, destination, speed,
-								Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
-	$Tween.start()
+	tween_to(json.result[0].x, json.result[0].y)
 
 func _process(delta):
 	if moving:

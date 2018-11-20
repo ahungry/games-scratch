@@ -1,5 +1,8 @@
 extends Node2D
 
+#export (PackedScene) var Truck
+var Truck = preload('res://Truck.tscn')
+
 const N = 0x1
 const E = 0x2
 const S = 0x4
@@ -37,6 +40,10 @@ func _ack(result, response_code, headers, body):
 	printt(json.result)
 	for i in range(0, json.result.size()):
 		printt('Found name: ' + json.result[i].name)
+		var m = Truck.instance()
+		add_child(m)
+		m.map = Map
+		m.tween_to(json.result[i].x, json.result[i].y, Map)
 
 func generate_tile(cell):
 	var cells = find_valid_tiles(cell)
