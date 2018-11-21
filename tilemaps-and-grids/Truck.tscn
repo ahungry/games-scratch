@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Truck.gd" type="Script" id=1]
 [ext_resource path="res://assets/IsoTruck/carRed6_002.png" type="Texture" id=2]
@@ -24,6 +24,8 @@
 [ext_resource path="res://assets/IsoUnits/knight128-6.png" type="Texture" id=22]
 [ext_resource path="res://assets/IsoUnits/knight128-7.png" type="Texture" id=23]
 [ext_resource path="res://assets/IsoUnits/knight128-8.png" type="Texture" id=24]
+[ext_resource path="res://assets/IsoUnits/knight-back-0.png" type="Texture" id=25]
+[ext_resource path="res://assets/IsoUnits/knight-back-1.png" type="Texture" id=26]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -86,6 +88,11 @@ animations = [ {
 "loop": true,
 "name": "k128",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 25 ), ExtResource( 26 ) ],
+"loop": true,
+"name": "knight-back",
+"speed": 5.0
 } ]
 
 [sub_resource type="CircleShape2D" id=3]
