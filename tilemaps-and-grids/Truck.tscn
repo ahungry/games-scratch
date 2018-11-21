@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://Truck.gd" type="Script" id=1]
 [ext_resource path="res://assets/IsoTruck/carRed6_002.png" type="Texture" id=2]
@@ -26,6 +26,14 @@
 [ext_resource path="res://assets/IsoUnits/knight128-8.png" type="Texture" id=24]
 [ext_resource path="res://assets/IsoUnits/knight-back-0.png" type="Texture" id=25]
 [ext_resource path="res://assets/IsoUnits/knight-back-1.png" type="Texture" id=26]
+[ext_resource path="res://assets/IsoUnits/32b-red-scarf-0.png" type="Texture" id=27]
+[ext_resource path="res://assets/IsoUnits/32b-red-scarf-1.png" type="Texture" id=28]
+[ext_resource path="res://assets/IsoUnits/32-red-scarf-front-0.png" type="Texture" id=29]
+[ext_resource path="res://assets/IsoUnits/32-red-scarf-front-1.png" type="Texture" id=30]
+[ext_resource path="res://assets/IsoUnits/32-tunic-0.png" type="Texture" id=31]
+[ext_resource path="res://assets/IsoUnits/32-tunic-1.png" type="Texture" id=32]
+[ext_resource path="res://assets/IsoUnits/32-boots-0.png" type="Texture" id=33]
+[ext_resource path="res://assets/IsoUnits/32-boots-1.png" type="Texture" id=34]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -95,6 +103,38 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="SpriteFrames" id=4]
+
+animations = [ {
+"frames": [ ExtResource( 27 ), ExtResource( 28 ) ],
+"loop": true,
+"name": "back",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 29 ), ExtResource( 30 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=5]
+
+animations = [ {
+"frames": [ ExtResource( 31 ), ExtResource( 32 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=6]
+
+animations = [ {
+"frames": [ ExtResource( 33 ), ExtResource( 34 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
 [sub_resource type="CircleShape2D" id=3]
 
 custom_solver_bias = 0.0
@@ -126,12 +166,33 @@ animation = "knight"
 offset = Vector2( 0, -25 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+[node name="AnimatedSprite3" type="AnimatedSprite" parent="." index="2"]
+
+position = Vector2( 0, -25 )
+frames = SubResource( 4 )
+animation = "default"
+_sections_unfolded = [ "Transform" ]
+
+[node name="AnimatedSprite4" type="AnimatedSprite" parent="." index="3"]
+
+position = Vector2( 0, -25 )
+frames = SubResource( 5 )
+animation = "default"
+_sections_unfolded = [ "Transform" ]
+
+[node name="AnimatedSprite5" type="AnimatedSprite" parent="." index="4"]
+
+position = Vector2( 0, -25 )
+frames = SubResource( 6 )
+animation = "default"
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="5"]
 
 visible = false
 shape = SubResource( 3 )
 
-[node name="Tween" type="Tween" parent="." index="3"]
+[node name="Tween" type="Tween" parent="." index="6"]
 
 repeat = false
 playback_process_mode = 1
@@ -140,7 +201,7 @@ playback/active = false
 playback/repeat = false
 playback/speed = 1.0
 
-[node name="Camera2D" type="Camera2D" parent="." index="4"]
+[node name="Camera2D" type="Camera2D" parent="." index="7"]
 
 anchor_mode = 1
 rotating = false

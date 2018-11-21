@@ -24,6 +24,7 @@ var dest_y = 0
 
 var flip_h = false
 var anim = 'knight'
+var back = false
 
 func can_move(dir):
 	var t = map.get_cellv(map_pos)
@@ -40,21 +41,25 @@ func _input(event):
 		flip_h = false
 		#modulate = Color(0.1, 0.1, 0.1)
 		anim = 'knight-back'
+		back = true
 	if event.is_action_pressed('ui_down'):
 		move(S)
 		flip_h = false
 		#modulate = Color(1, 1, 1)
 		anim = 'knight'
+		back = false
 	if event.is_action_pressed('ui_right'):
 		move(E)
 		flip_h = true
 		#modulate = Color(1, 1, 1)
 		anim = 'knight'
+		back = false
 	if event.is_action_pressed('ui_left'):
 		move(W)
 		flip_h = true
 		#modulate = Color(0.1, 0.1, 0.1)
 		anim = 'knight-back'
+		back = true
 
 func _ready():
 	#var http = HTTPRequest.instance()
@@ -92,9 +97,26 @@ func _process(delta):
 	if moving:
 		$AnimatedSprite2.set_flip_h(flip_h)
 		$AnimatedSprite2.play(anim)
+
+		$AnimatedSprite3.modulate = Color(1, 1, .1)
+		$AnimatedSprite4.modulate = Color(0, .1, 1)
+
+		if back:
+			$AnimatedSprite3.play('back')
+		else:
+			$AnimatedSprite3.play('default')
+
+		$AnimatedSprite4.play('default')
+		$AnimatedSprite5.play('default')
+		$AnimatedSprite3.set_flip_h(flip_h)
+		$AnimatedSprite4.set_flip_h(flip_h)
+		$AnimatedSprite5.set_flip_h(flip_h)
 	else:
 		$AnimatedSprite2.set_flip_h(flip_h)
 		$AnimatedSprite2.stop()
+		$AnimatedSprite3.stop()
+		$AnimatedSprite4.stop()
+		$AnimatedSprite5.stop()
 
 func move(dir):
 	if not can_move(dir):
