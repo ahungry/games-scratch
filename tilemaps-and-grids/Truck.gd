@@ -89,7 +89,7 @@ func _process(delta):
 		$AnimatedSprite2.play('knight')
 	else:
 		$AnimatedSprite2.set_flip_h(flip_h)
-		$AnimatedSprite2.stop()
+		#$AnimatedSprite2.stop()
 
 func move(dir):
 	if not can_move(dir):
