@@ -1,7 +1,7 @@
 extends Node2D
 
 #export (PackedScene) var Truck
-var Truck = preload('res://Truck.tscn')
+var Unit = preload('res://Unit.tscn')
 
 const N = 0x1
 const E = 0x2
@@ -40,7 +40,8 @@ func _ack(result, response_code, headers, body):
 	printt(json.result)
 	for i in range(0, json.result.size()):
 		printt('Found name: ' + json.result[i].name)
-		var m = Truck.instance()
+		var m = Unit.instance()
+		m.boot(json.result[i].gear)
 		add_child(m)
 		m.map = Map
 		m.tween_to(json.result[i].x, json.result[i].y, Map)

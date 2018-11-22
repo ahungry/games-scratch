@@ -63,9 +63,30 @@ func _input(event):
 		anim = 'knight-back'
 		back = true
 
-#func _init(io):
-#	printt('Received input')
-#	printt(io)
+func boot(stubs):
+	# Loop over and add the gear
+	#var stubs = [{'back': '32b-red-scarf', 'default': '32-red-scarf-front'}]
+	for stub in stubs:
+		var res1 = load('res://assets/IsoUnits/' + stub.default.png + '-0.png')
+		var res2 = load('res://assets/IsoUnits/' + stub.default.png + '-1.png')
+		var res3 = load('res://assets/IsoUnits/' + stub.back.png + '-0.png')
+		var res4 = load('res://assets/IsoUnits/' + stub.back.png + '-1.png')
+		var f = SpriteFrames.new()
+		f.animations = [
+		{'frames': [res3, res4], 'loop': true, 'name': 'back', 'speed': 5.0},
+		{'frames': [res1, res2], 'loop': true, 'name': 'default', 'speed': 5.0}
+		]
+		var s = AnimatedSprite.new()
+		s.position = Vector2(0, -25)
+		s.frames = f
+		s.animation = 'default'
+		s.play('default')
+		var c = stub.default.color
+		s.modulate = Color(c.r, c.g, c.b)
+		add_child(s)
+		gear.push_back(s)
+		printt('Added the gear')
+	# End for loop
 
 func _ready():
 	#var http = HTTPRequest.instance()
@@ -77,27 +98,6 @@ func _ready():
 	$Tween.connect('tween_started', self, '_tweening_on', [])
 	$Tween.connect('tween_completed', self, '_tweening_off', [])
 
-	# Loop over and add the gear
-	var stubs = [{'back': '32b-red-scarf', 'default': '32-red-scarf-front'}]
-	for stub in stubs:
-		var res1 = load('res://assets/IsoUnits/' + stub.default + '-0.png')
-		var res2 = load('res://assets/IsoUnits/' + stub.default + '-1.png')
-		var res3 = load('res://assets/IsoUnits/' + stub.back + '-0.png')
-		var res4 = load('res://assets/IsoUnits/' + stub.back + '-1.png')
-		var f = SpriteFrames.new()
-		f.animations = [
-		{'frames': [res3, res4], 'loop': true, 'name': 'back', 'speed': 5.0},
-		{'frames': [res1, res2], 'loop': true, 'name': 'default', 'speed': 5.0}
-		]
-		var s = AnimatedSprite.new()
-		s.position = Vector2(0, -25)
-		s.frames = f
-		s.animation = 'default'
-		s.play('default')
-		add_child(s)
-		gear.push_back(s)
-		printt('Added the gear')
-	# End for loop
 
 func tween_to (x, y, map):
 	dest_x = x
