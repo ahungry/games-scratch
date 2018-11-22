@@ -1,5 +1,9 @@
 <?php
 
+function coord () {
+    return rand(0, 9);
+}
+
 // Run me with: php -S 127.0.0.1:12345
 $response = json_encode(
     [
@@ -16,12 +20,12 @@ $response = json_encode(
                  ],
              ],
          ],
-         'x' => 8,
-         'y' => 3],
+         'x' => coord(),
+         'y' => coord()],
         ['name' => 'test2',
          'gear' => [],
-         'x' => 3,
-         'y' => 2],
+         'x' => coord(),
+         'y' => coord()],
     ]
 );
 

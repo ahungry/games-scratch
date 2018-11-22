@@ -7,6 +7,7 @@ const W = 0x8
 
 const HEAD = 0x1
 
+var unit_name = ''
 var animations = {N: 'n',
 				  S: 's',
 				  E: 'e',
@@ -63,7 +64,9 @@ func _input(event):
 		anim = 'knight-back'
 		back = true
 
-func boot(stubs):
+func boot(_unit_name, stubs):
+	unit_name = _unit_name
+
 	# Loop over and add the gear
 	#var stubs = [{'back': '32b-red-scarf', 'default': '32-red-scarf-front'}]
 	for stub in stubs:
