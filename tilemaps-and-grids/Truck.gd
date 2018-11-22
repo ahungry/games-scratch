@@ -7,6 +7,9 @@ const W = 0x8
 
 const HEAD = 0x1
 
+var res1 = load('res://assets/IsoUnits/32-red-scarf-front-0.png')
+var res2 = load('res://assets/IsoUnits/32-red-scarf-front-1.png')
+
 var animations = {N: 'n',
 				  S: 's',
 				  E: 'e',
@@ -15,13 +18,7 @@ var moves = {N: Vector2(0, -1),
 			 S: Vector2(0, 1),
 			 E: Vector2(1, 0),
 			 W: Vector2(-1, 0)}
-var gear = {
-	HEAD: AnimatedSprite.new()
-}
-
-var frames
-var s3
-
+var gear = []
 var map = null
 var map_pos = Vector2()
 var speed = 1
@@ -78,22 +75,30 @@ func _ready():
 	#http.request('http://127.0.0.1:12345/')
 	$Tween.connect('tween_started', self, '_tweening_on', [])
 	$Tween.connect('tween_completed', self, '_tweening_off', [])
-	frames = SpriteFrames.new()
-	frames.animations = [
-	{'frames': [
-	load('res://assets/IsoUnits/32b-red-scarf-0.png'),
-	load('res://assets/IsoUnits/32b-red-scarf-1.png'),
-	], 'loop': true, 'name': 'back', 'speed': 5.0},
-	{'frames': [
-	load('res://assets/IsoUnits/32-red-scarf-front-0.png'),
-	load('res://assets/IsoUnits/32-red-scarf-front-1.png'),
-	], 'loop': true, 'name': 'default', 'speed': 5.0}
-	]
-	s3 = gear[HEAD]
-	s3.position = Vector2(0, -25)
-	s3.frames = frames
-	s3.animation = 'default'
-	add_child(s3)
+
+	var stubs = [{'back': '32b-red-scarf', 'default': '32-red-scarf-from-front'}]
+	for stub in stubs:
+		var f = SpriteFrames.new()
+		f.animations = [
+		{'frames': [
+		load('res://assets/IsoUnits/' + stub.back + '-0.png'),
+		load('res://assets/IsoUnits/' + stub.back + '-1.png')
+		], 'loop': true, 'name': 'back', 'speed': 5.0},
+		{'frames': [
+		res1, res2
+		#load('res://assets/IsoUnits/' + stub.default + '-0.png'),
+		#load('res://assets/IsoUnits/' + stub.default + '-1.png')
+		], 'loop': true, 'name': 'default', 'speed': 5.0}
+		]
+		var s = AnimatedSprite.new()
+		s.position = Vector2(0, -25)
+		s.frames = f
+		s.animation = 'default'
+		s.play('default')
+		add_child(s)
+		gear.push_back(s)
+		printt('Added the gear')
+	# End for loop
 
 func tween_to (x, y, map):
 	dest_x = x
@@ -125,24 +130,24 @@ func _process(delta):
 		#$AnimatedSprite3.modulate = Color(1, 1, .1)
 		$AnimatedSprite4.modulate = Color(0, .1, 1)
 
-		if back:
-			s3.play('back')
-			#$AnimatedSprite3.play('back')
-		else:
-			s3.play('default')
-			#$AnimatedSprite3.play('default')
+		for g in gear:
+			g.set_flip_h(flip_h)
+			if back:
+				g.play('back')
+			else:
+				g.play('default')
+		# End for
 
 		$AnimatedSprite4.play('default')
 		$AnimatedSprite5.play('default')
-		s3.set_flip_h(flip_h)
-		#$AnimatedSprite3.set_flip_h(flip_h)
 		$AnimatedSprite4.set_flip_h(flip_h)
 		$AnimatedSprite5.set_flip_h(flip_h)
 	else:
+		for g in gear:
+			g.stop()
+
 		$AnimatedSprite2.set_flip_h(flip_h)
 		$AnimatedSprite2.stop()
-		s3.stop()
-		#$AnimatedSprite3.stop()
 		$AnimatedSprite4.stop()
 		$AnimatedSprite5.stop()
 
