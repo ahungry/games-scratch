@@ -5,6 +5,8 @@ const E = 0x2
 const S = 0x4
 const W = 0x8
 
+const HEAD = 0x1
+
 var animations = {N: 'n',
 				  S: 's',
 				  E: 'e',
@@ -13,6 +15,12 @@ var moves = {N: Vector2(0, -1),
 			 S: Vector2(0, 1),
 			 E: Vector2(1, 0),
 			 W: Vector2(-1, 0)}
+var gear = {
+	HEAD: AnimatedSprite.new()
+}
+
+var frames
+var s3
 
 var map = null
 var map_pos = Vector2()
@@ -70,6 +78,22 @@ func _ready():
 	#http.request('http://127.0.0.1:12345/')
 	$Tween.connect('tween_started', self, '_tweening_on', [])
 	$Tween.connect('tween_completed', self, '_tweening_off', [])
+	frames = SpriteFrames.new()
+	frames.animations = [
+	{'frames': [
+	load('res://assets/IsoUnits/32b-red-scarf-0.png'),
+	load('res://assets/IsoUnits/32b-red-scarf-1.png'),
+	], 'loop': true, 'name': 'back', 'speed': 5.0},
+	{'frames': [
+	load('res://assets/IsoUnits/32-red-scarf-front-0.png'),
+	load('res://assets/IsoUnits/32-red-scarf-front-1.png'),
+	], 'loop': true, 'name': 'default', 'speed': 5.0}
+	]
+	s3 = gear[HEAD]
+	s3.position = Vector2(0, -25)
+	s3.frames = frames
+	s3.animation = 'default'
+	add_child(s3)
 
 func tween_to (x, y, map):
 	dest_x = x
@@ -98,23 +122,27 @@ func _process(delta):
 		$AnimatedSprite2.set_flip_h(flip_h)
 		$AnimatedSprite2.play(anim)
 
-		$AnimatedSprite3.modulate = Color(1, 1, .1)
+		#$AnimatedSprite3.modulate = Color(1, 1, .1)
 		$AnimatedSprite4.modulate = Color(0, .1, 1)
 
 		if back:
-			$AnimatedSprite3.play('back')
+			s3.play('back')
+			#$AnimatedSprite3.play('back')
 		else:
-			$AnimatedSprite3.play('default')
+			s3.play('default')
+			#$AnimatedSprite3.play('default')
 
 		$AnimatedSprite4.play('default')
 		$AnimatedSprite5.play('default')
-		$AnimatedSprite3.set_flip_h(flip_h)
+		s3.set_flip_h(flip_h)
+		#$AnimatedSprite3.set_flip_h(flip_h)
 		$AnimatedSprite4.set_flip_h(flip_h)
 		$AnimatedSprite5.set_flip_h(flip_h)
 	else:
 		$AnimatedSprite2.set_flip_h(flip_h)
 		$AnimatedSprite2.stop()
-		$AnimatedSprite3.stop()
+		s3.stop()
+		#$AnimatedSprite3.stop()
 		$AnimatedSprite4.stop()
 		$AnimatedSprite5.stop()
 
