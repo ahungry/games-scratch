@@ -55,9 +55,6 @@ func _ack(result, response_code, headers, body):
 		# See if the unit already exists or not.
 		var existing = false
 		for u in units:
-			printt('...' + u.unit_name + '...')
-			printt('VERSUS')
-			printt('...' + json.result[i].name + '...')
 			if u.unit_name == json.result[i].name:
 				printt('FOUND A MATCH')
 				existing = u
